@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+	<script>
+	FacebookPixelCode(9);
+	</script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_reserv_5">
+
+	<!-- img : 예약가입 신청 -->
+	<div class="step_area">
+		<p><img src="images/img_step_3.png" alt="3단계 예약가입 완료"/></p>
+	</div>
+
+	<!-- 예약확인 영역 -->
+	<div class="confirm_area">
+		<div>
+			<p class="img_100"><img src="images/txt_reserv_result.png" alt="감사합니다! 예약 가입이 모두 완료되었습니다 !."/></p>
+		</div>
+		<div>
+			<p class="img_100"><img th:src="@{'images/img_confirm_color_' + ${order.colrCd} + '.jpg'}" alt="예약한 단말기"/></p>
+		</div>
+
+		<div class="confirm_list">
+			<dl>
+				<dt>이름</dt>
+				<dd th:text="${order.name}"></dd>
+			</dl>
+			<dl>
+				<dt>휴대폰 번호</dt>
+				<dd th:text="${order.phonNo}"></dd>
+			</dl>
+			<dl>
+				<dt>예약번호</dt>
+				<dd th:text="${order.reqSeqNo}"></dd>
+			</dl>
+			<!-- 2017-08-11 추가 -->
+			<dl>
+				<dt>휴대폰 모델명</dt>
+				<dd th:text="${order.modTypNm}"></dd>
+			</dl>
+			<dl>
+				<dt>저장공간</dt>
+				<dd th:text="${order.sizeNm}"></dd>
+			</dl>
+			<!-- //2017-08-11 추가 -->
+			<dl>
+				<dt>색상</dt>
+				<dd th:text="${order.colrNm}"></dd>
+			</dl>
+			<dl>
+				<dt>수령매장</dt>
+				<dd th:text="${order.dlrNm}"></dd>
+			</dl>
+			<!-- 
+			<p>
+				고객님의 예약 가입 정보가 휴대전화로 발송되었습니다. <br />
+				정보를 수령하지 못한 고객님은 [예약가입 확인] 탭에서 정보를<br /> 다시 한 번 확인하세요. 개통이 완료된 고객에 한하여 <br />
+				사은품을 증정하며, 사은품 배송지는 추후 입력하실 수 있습니다.
+			</p>
+			-->
+		</div>
+	</div>
+	<!-- //예약확인 영역 -->
+
+	<!-- 2017-09-11 추가 -->
+	<div class="noti_area">
+		<p class="img_100"><img src="images/txt_noti_2.png" alt="고객님의 사전예약 정보가 휴대폰 번호로 발송되었습니다. 예약 정보를 받지 못한 고객님은 [내 예약 보기] 메뉴에서 정보를 확인 하세요." /></p>
+	</div>
+	<!-- //2017-09-11 추가 -->
+	
+	<!-- btn : 선택 버튼 -->
+	<div class="btn_step_2">
+		<ul>
+			<li><a href="reserve1"><img src="images/btn_home.png" alt="홈으로" /></a></li>
+		</ul>
+	</div>
+
+</div>
+
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_reserv_2">
+
+	<!-- img : 예약가입 신청 -->
+	<div class="step_area">
+		<p><img src="images/img_step_2.png" alt="1단계 예약방법 선택"/></p>
+	</div>
+
+	<!-- slide area -->
+	<section class="slide_area">
+		<ul class="bxslider">
+            <!-- 2017-02-23 이미지파일명 수정 -->
+            <li><img src="images/slide/img_reserv_slide_1_1.png" alt="" /></li>
+            <li><img src="images/slide/img_reserv_slide_1_2.png" alt="" /></li>
+            <li><img src="images/slide/img_reserv_slide_1_3.png" alt="" /></li>
+            <!-- //2017-02-23 이미지파일명 수정 -->
+		</ul>
+	</section>
+	<!-- 2017-09-11 추가 -->
+	<div class="ico_paging">
+		<a href="javascript:changePhoneImg(0);"><img src="images/slide/m_ico_paging_1_1.png" alt="" /></a>
+		<a href="javascript:changePhoneImg(1);"><img src="images/slide/m_ico_paging_1_2.png" alt="" /></a>
+		<a href="javascript:changePhoneImg(2);"><img src="images/slide/m_ico_paging_1_3.png" alt="" /></a>
+	</div>
+	<!-- //2017-09-11 추가 -->	
+	<script type="text/javascript">		
+		$(document).ready(function(){
+			setPhoneSliderM(0);
+		});
+	</script>
+	<!-- //slide area -->
+
+	<!-- 기기선택 -->
+	<div class="color_select_area">
+
+		<!-- txt : 컬러 선택 -->
+		<div class="txt_color_select">
+			<img src="images/txt_v30_select.png" alt="기기 선택" />
+		</div>
+
+		<!-- btn : 컬러 선택 -->
+		<ul class="btn_product_select">
+			<li><a href="javascript:setSelectDeviceM(0);"><img src="images/btn_v30_1_off.png" alt="V30" /></a></li>
+			<li><a href="javascript:setSelectDeviceM(1);"><img src="images/btn_v30_2_off.png" alt="V30+" /></a></li>
+		</ul>
+	</div>
+	<!-- //기기선택 -->
+	
+	<!-- 컬러선택 -->
+	<div class="color_select_area">
+
+		<!-- txt : 컬러 선택 -->
+		<div class="txt_color_select">
+			<img src="images/txt_color_select.png" alt="고객 정보 입력"/>
+		</div>
+
+		<!-- btn : 컬러 선택 -->
+		<ul class="btn_color_select">
+			<li><a href="javascript:setSelectPhoneColorM(0);"><img src="images/btn_color_1_off.png" alt="블루" /></a></li>
+			<li><a href="javascript:setSelectPhoneColorM(1);"><img src="images/btn_color_2_off.png" alt="블랙" /></a></li>
+			<li><a href="javascript:setSelectPhoneColorM(2);"><img src="images/btn_color_3_off.png" alt="실버" /></a></li>
+			<!-- <li><a href="javascript:setSelectPhoneColorM(3);"><img src="images/btn_color_4_off.png" alt="라벤더" /></a></li> -->
+		</ul>
+	</div>
+	<!-- //컬러선택 -->
+
+	<div class="add_color_script"><img src="images/pc_txt_color_4.png"/></div>
+
+	<!-- 고객 정보입력 -->
+	<div class="user_info_area">
+		<!-- txt : 고객 정보 입력 -->
+		<div class="txt_user_info">
+			<img src="images/txt_user_info.png" alt="고객 정보 입력"/>
+		</div>
+
+		<dl>
+			<dt><img src="images/txt_name.png" alt="이름" /></dt>
+			<dd><input type="text" name="username" style="width:460px;" title="이름 입력" maxlength="25"/></dd>
+		</dl>
+		<dl>
+			<dt><img src="images/txt_phone.png" alt="휴대폰번호" /></dt>
+			<dd>
+				<input type="tel" name="handphone" class="" style="width:460px;" placeholder="예시) 01012345678" title="휴대폰번호 입력" maxlength="11"/>
+			</dd>
+		</dl>
+
+        <!-- 2017-02-23 btn : 개인정보 동의 -->
+        <div class="btn_agree_chk">
+            <ul>
+                <li>
+                    <input type="checkbox" id="btnAgree" name="btnAgree2" />
+                    <label for="btnAgree"><img src="images/txt_agree_1.png" alt="예약가입 신청에 대한 개인 정보 수집 이용 동의." /></label>
+                    <a href="javascript:popHeightControl('popAgree1','block');"  class="btn_privacy_view"><img src="images/btn_privacy_view.png" alt="전문보기" /></a>
+                </li>
+                <li>
+                    <input type="checkbox" id="btnAgree2" name="btnAgree2" />
+                    <label for="btnAgree2"><img src="images/txt_agree_2.png" alt="사은품 신청에 대한 개인정보 수집 이용 동의." /></label>
+                    <a href="javascript:popHeightControl('popAgree2','block');" target="_blank" class="btn_privacy_view"><img src="images/btn_privacy_view.png" alt="전문보기" /></a>
+                </li>
+            </ul>
+        </div>
+    <!-- //2017-02-23 btn : 개인정보 동의 -->
+    </div>
+
+	<!-- //고객 정보입력 -->
+	
+	<!-- btn : 예약하기 -->
+	<div class="btn_reserv_3">
+		<a href="#a" onclick="sendReserveUserInfo();"><img src="images/btn_reserv_3.png" alt="예약하기" /></a>
+	</div>
+</div>
+
+<!-- bg black -->
+
+<!-- 2017-02-28 추가 pop : 개인정보 1 -->
+<div class="pop_agree_1" id="popAgree1" style="display:none;">
+	<!-- btn : 닫기 -->
+	<div class="m_btn_agree_close" >
+		<a href="javascript:popHeightControl('popAgree1','none');"><img src="images/m_btn_agree_close.png" alt="" /></a>
+	</div>
+	<p><img src="images/pop_agree_1.jpg" border="0" usemap="#Map_pop1" alt="" /></p>
+</div>
+<!-- 2017-02-28 추가 pop : 개인정보 1 -->
+
+<!-- 2017-02-28 추가 pop : 개인정보 2 -->
+<div class="pop_agree_2" id="popAgree2" style="display:none;">
+	<!-- btn : 닫기 -->
+	<div class="m_btn_agree_close" >
+		<a href="javascript:popHeightControl('popAgree2','none');"><img src="images/m_btn_agree_close.png" alt="" /></a>
+	</div>
+	<p><img src="images/pop_agree_2.jpg" border="0" usemap="#Map_pop2" alt="" /></p>
+</div>
+<!-- 2017-02-28 추가 pop : 개인정보 2 -->
+
+
+</th:block>
+<!-- popup -->
+
+
+<!-- //popup -->
+</body>
+</html>

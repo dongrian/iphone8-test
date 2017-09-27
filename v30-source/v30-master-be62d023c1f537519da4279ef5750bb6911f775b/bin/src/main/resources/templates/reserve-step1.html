@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+	<script src="common/js/server.js"></script>
+</head>
+<body>
+
+<th:block layout:fragment="content">  
+    <div class="contBlock contents">
+    	<div class="colorBlock"></div>
+		<div class="contElements">   
+		    <!-- step1 -->
+		    <div class="stepBlock step1">
+		        <div class="stepLocation"><img src="images/step_1.png"/></div>
+		        <div class="reserveTypeSelectors">
+		            <div class="reserveTypeSelector">
+		                <a href="javascript:alert('사전예약이 종료되었습니다.');" onclick="FacebookPixelCode(6);sendAceCount('V30booking1_store')"><img src="images/reserve_store.jpg"/></a>
+		            </div>
+		            <div class="reserveTypeSelector">
+                        <!--  2017-02-23  -->
+                        <a href="http://www.uplus.co.kr/sqr/evnt/reserve/ReserveRegistFormV30.hpi" target="_blank" onclick="FacebookPixelCode(7);sendAceCount('V30booking1_shop')"><img src="images/reserve_mall.jpg"/></a>
+                        <!--  //2017-02-23  -->		            
+                    </div>
+		        </div>
+		    </div>
+		    <!-- step1 -->
+		</div>
+	</div>
+</th:block>
+
+</body>
+</html>

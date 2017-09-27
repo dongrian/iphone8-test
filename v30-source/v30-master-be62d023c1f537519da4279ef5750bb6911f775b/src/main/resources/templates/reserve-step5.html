@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+	<script src="common/js/server.js"></script>
+	<script>
+	FacebookPixelCode(9);
+	</script>
+</head>
+<body>
+
+<th:block layout:fragment="content">  
+    <div class="contBlock contents reservestep5">
+    	<div class="colorBlock"></div>
+    	<div class="colorBlock gray"></div>
+		<div class="contElements">   
+	        <!-- step3 -->
+	        <div class="stepBlock step3">
+	            <div class="stepLocation"><img src="images/step_3.png"/></div>
+	            <div class="reserveInfoBlock">
+	                <div><img class="reserveInfoBg" src="images/step_3_board_bg.jpg"/></div>
+	                <div class="reserveInfoElement reservePhone"><img th:src="@{'images/select_phone_' + ${order.colrCd} + '.jpg'}"/></div>
+	                <div class="reserveInfoElement reserveInfo">
+	                    <div class="reserveInfoTxt">
+	                        <div class="reserveInfoTxtBlock">
+	                            <div class="reserveInfoField name" th:text="${order.name}">김소*</div>
+	                        </div>
+	                        <div class="reserveInfoTxtBlock">
+	                            <div class="reserveInfoField phone" th:text="${order.phonNo}">010-****-1234</div>
+	                        </div>
+	                        <div class="reserveInfoTxtBlock">
+	                            <div class="reserveInfoField number" th:text="${order.reqSeqNo}">1122334455</div>
+	                        </div>
+	                        <div class="reserveInfoTxtBlock">
+	                            <div class="reserveInfoField device" th:text="${order.modTypNm}">V30</div>
+	                        </div>
+	                        <div class="reserveInfoTxtBlock">
+	                            <div class="reserveInfoField volume" th:text="${order.sizeNm}">60GB</div>
+	                        </div>
+	                        <div class="reserveInfoTxtBlock">
+	                            <div class="reserveInfoField color" th:text="${order.colrNm}">Silver</div>
+	                        </div>
+		                    <div class="reserveInfoTxtBlock">
+		                        <div class="reserveInfoField selectstore" th:text="${order.dlrNm}">가좌마을직영점(일산)</div>
+		                    </div>
+	                    </div>
+	                    <div class="goHomeBtns">
+                            <!--  2017-02-23 메인 페이지로 이동 시켜주세요. -->
+                            <div class="goHomeBtn"><a href="main"><img src="images/step_3_gohome.jpg"/></a></div>
+                            <!--  //2017-02-23  -->	                    
+                        </div>
+	                </div>
+	            </div>	            
+	        </div>
+	        <!-- step3 -->
+		</div>
+	</div>
+</th:block>
+
+</body>
+</html>

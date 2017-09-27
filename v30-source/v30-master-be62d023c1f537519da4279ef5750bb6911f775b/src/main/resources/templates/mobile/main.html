@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+    <script>
+    FacebookPixelCode(0);
+    </script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+	<!-- 2017-02-24 추가 -->
+	<!-- <div class="txt_coming_soon">
+		준비중 입니다.
+	</div> -->
+
+	<!-- slide area
+	<section class="slide_area">
+		<ul class="bxslider">
+			<li><a href="javascript:sendMainOutLinkM(0);"><img src="images/slide/img_main_slide_1.jpg" alt="" /></a></li>
+			<li><a href="javascript:sendMainOutLinkM(1);"><img src="images/slide/img_main_slide_2.jpg" alt="" /></a></li>
+			<li><a href="1_reserve_request_1.html"><img src="images/slide/img_main_slide_2.jpg" alt="" /></a></li>
+			<li><a href="1_reserve_request_1.html"><img src="images/slide/img_main_slide_3.jpg" alt="" /></a></li>
+ 			<li><a href="reserve1"><img src="images/slide/img_main_slide_1.jpg" alt="" /></a></li>
+		</ul>
+	</section>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.bxslider').bxSlider({
+				speed: '500',
+				auto : true
+			});
+		});
+	</script>
+	 -->
+
+	<!-- 2017-02-24 추가 -->
+	<div class="main_top_area">
+		<p>
+			<a href="javascript:alert('사전예약이 종료되었습니다.');" onclick="FacebookPixelCode(1);"><img src="images/m_img_main_1.jpg" alt="U+, 당신의 V30에 강력함을 더하다, V30 예약가입 바로가기" /></a>
+		</p>
+	</div>
+	
+	<!-- title : 유플러스의 G6 스페셜 구매혜택 -->
+	<div class="tit_benefit">
+		<p><img src="images/tit_benefit.png" alt="유플러스의 G6 스페셜 구매혜택"/></p>
+	</div>
+
+	<!-- list : 유플러스 구매혜택 -->
+	<div class="benefit_list">
+		<ul>
+			<li><a href="#a"><img src="images/img_main_banner_01.png" alt="유플러스 구매혜택" /></a></li>
+			<li><a href="#b"><img src="images/img_main_banner_02.png" alt="유플러스 구매혜택" /></a></li>
+			<li><a href="#c"><img src="images/img_main_banner_03.png" alt="유플러스 구매혜택" /></a></li>
+			<li><a href="#d"><img src="images/img_main_banner_04.png" alt="유플러스 구매혜택" /></a></li>
+			<li><a href="#e"><img src="images/img_main_banner_05.png" alt="유플러스 구매혜택" /></a></li>
+			<!--
+			<li><a href="#"><img src="images/img_main_banner_06.png" alt="U+ 클라우드 저장소" /></a></li>
+			-->
+		</ul>
+	</div>
+
+	<!-- title : 유플러스의 구매혜택 더 보기
+	<div class="btn_benefit_view">
+		<a href="benefit"><img src="images/btn_benefit_view.png" alt="유플러스의 구매혜택 더 보기" /></a>
+	</div> -->
+	
+	<!-- 2017-09-12 추가 -->
+	<div class="img_banner">
+		<a href="javascript:sendVReventPage();"><img src="images/img_banner.png" alt="" /></a>
+	</div>
+	<!-- //2017-09-12 추가 -->
+		
+</th:block>
+
+</body>
+</html>

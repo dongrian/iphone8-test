@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+	<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f32da079137460aae16dcaf6cf3e0d3a&amp;libraries=services"></script>
+	<script src="common/js/map.js"></script>
+	<script src="common/js/server.js"></script>
+</head>
+<body>
+
+<th:block layout:fragment="content">  
+    <div class="contBlock contents reservestep4">
+    	<div class="colorBlock"></div>
+    	<div class="colorBlock gray"></div>
+		<div class="contElements">   
+	        <!-- step2_2 -->
+	        <div class="stepBlock step2_2" >
+	            <div class="stepLocation"><img src="images/step_2.png"/></div>
+	            <div class="storeSearchBoard">
+	                <div class="elementBg"><img src="images/step_2_2_board_bg.jpg"/></div>
+	                <div class="storeSearchElement">
+	                    <div class="searchTypeBtns">
+                            <div class="searchTypeBtn">
+								<a href="javascript:changeSearchType(0)"><img src="images/step_2_2_searchtype_on_1.jpg"/></a>
+							</div>
+							<div class="searchTypeBtn">
+								<a href="javascript:changeSearchType(1)"><img src="images/step_2_2_searchtype_off_2.jpg"/></a>
+							</div>
+	                    </div>
+	                    <div class="searchFieldBlock">
+	                        <div class="searchTypeFields storenames">
+	                            <div><input class="inputBlock" type="text" name="storename" id="storename" /></div>
+	                           <div class="searchTypeSubmit"> <a href="javascript:sendStoreNameSearch();"><img src="images/step_2_2_search.jpg"/></a></div>
+	                        </div>
+	                        <div class="searchTypeFields localnames">
+	                            <select id="store_area_list">
+	                                <option value="" selected="selected">- 지역선택 -</option>
+	                            </select>
+	                            <select id="store_sublist" >
+	                                <option value="" selected="selected">- 구/군 -</option>
+	                            </select>
+	                               <div class="searchTypeSubmit"> <a href="javascript:sendLocalNameSearch();"><img src="images/step_2_2_search.jpg"/></a></div>
+	                        </div>
+	                    </div>
+	                    <div class="blackline"></div>
+	                    <div class="searchResultBlock">
+	                        <div id="store_list">
+	                        
+	                            <!-- 검색결과 리스트 -->
+	                            <!--<div class="storeListBlock">
+	                                <div class="listElement storeField">가좌마을직영점</div>
+	                                <div class="listElement addField">경기 고양시 일산서구 가좌3로 27 1층 (가좌동, 준프라자)</div>
+	                                <div class="listElement phoneField">070-2343-2389</div> 
+	                                <div class="listElement chooseField"><input type="radio" id="store1" name="store1" value="store1"/></div>
+									<div class="listElement mapbtn"><a href="javascript:openStoreMap(map정보);"><img src="images/btn_map_view.png"/></div></a>
+	                            </div>-->
+	                            <!-- 검색결과 리스트 -->
+	                            
+	                            <!-- 디폴트 문구 -->
+	                            <div class="searchDefaultMsg">매장명 또는 지역별 방문 매장을 검색해 주세요.</div>
+	                            <!-- 디폴트 문구 -->
+	                            
+	                            <!-- 검색 결과 없을 때 문구 -->
+	                            <!-- <div class="searchDefaultMsg">검색된 매장이 없습니다.</div> -->
+	                            <!-- 검색 결과 없을 때 문구 -->
+	                            
+	                        </div>  
+	                    </div>
+	                    <div class="blackline"></div>
+	                </div>
+	            </div>
+				<div class="storeAgreeBlock">
+					<input type="checkbox" id="storeAgree" name="storeAgree" value="Y" />
+					<label for="storeAgree"><img src="images/store_agree_txt.jpg" /></label>
+				</div>		
+	            <div class="storeSearchSubmit">
+	                <a href="javascript:;" onclick="sendAceCount('V30booking2_storecomplete');sendSelectStoreSubmit();"><img src="images/step_2_2_storesubmit.jpg"/></a>
+	                <input type="hidden" name="reqSeqNo" value="" th:value="${reqSeqNo}"/>
+	            </div>
+	        </div>
+	        <!-- step2_2 -->
+				
+				<div class="mapPopBlock">
+					<div class="mapViewer"></div>
+					<a href="javascript:closeMapPop();"><img class="mapPopClose" src="images/pop_close.jpg"/></a>
+				</div>
+		</div>
+	</div>
+	<script>
+    $(document).ready(function() {
+    	getAddress1();
+    	
+        $('#store_area_list').change(function(){
+            var address1 = $('#store_area_list option:selected').val();
+            if (address1) {
+            	getAddress2(address1);
+            }
+        });
+        
+        //지도보기 레이어팝업
+        //popHeightControl('popMapView','block','top'); //2017-09-12
+    });
+   	</script>
+   	
+<!-- 2017-09-12 popup : 지도보기 -->
+<div class="pop_map_view" id="popMapView" style="display:none;">
+	<div class="positionR">
+
+		<div class="btn_pop_close">
+			<a href="javascript:popHeightControl('popMapView','none','top');"><img src="images/pc_btn_pop_close.png" alt="" /></a>
+		</div>
+
+		<!-- txt : 매장주소 -->
+		<div class="map_address">
+			<dl>
+				<dt>
+					<span>매장명</span>
+				</dt>
+				<dd>
+					<p id="mapDlrNm">강남구청 직영점</p>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<span>주소</span>
+				</dt>
+				<dd>
+					<p id="mapAddress">
+						서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 
+					</p>
+				</dd>
+			</dl>
+		</div>
+
+		<!-- 지도 영역 -->
+		<div class="map_area">
+			<div id="imap"></div>
+		</div>
+
+		<!-- btn : 확인 취소 -->
+		<div class="btn_map_center">
+			<a href="javascript:popHeightControl('popMapView','none','top');"><img src="images/pc_btn_map_1.png" alt="확인" /></a>
+		</div>
+
+		<p><img src="images/pc_pop_map_view.png" alt="" /></p>
+	</div>
+</div>
+<!-- //2017-09-12 popup : 지도보기 -->   	
+<script>
+	//화면 정가운데 띄울 때 사용
+	function popHeightControl(divID,display,align){
+		// black bg
+		if(display=='block'){
+	
+			var scrolltop = $(window).scrollTop();
+			var docheight = $(document).height();
+			var winheight = $(window).height();
+			var popheight = $('#' + divID).height();
+			var poptop = scrolltop + winheight/2 - popheight/2;
+			if (poptop + popheight > docheight - 10) poptop = docheight - popheight - 10;
+	
+			$('#' + divID).css('top', poptop + 'px').show();
+			
+			$('#bg_layer').css('height', winheight).show();
+		}
+		else if(display=='none'){
+			$('#bg_layer').hide();
+		}
+		document.getElementById(divID).style.display=display;
+	}
+</script>   	
+   	
+</th:block>
+
+</body>
+</html>

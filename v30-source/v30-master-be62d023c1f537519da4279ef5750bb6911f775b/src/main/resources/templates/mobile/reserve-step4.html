@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+	<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f32da079137460aae16dcaf6cf3e0d3a&amp;libraries=services"></script>
+	<script src="common/js/map.js"></script>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_reserv_4">
+
+	<!-- img : 예약가입 신청 -->
+	<div class="step_area">
+		<p><img src="images/img_step_2.png" alt="2단계 예약하기"/></p>
+	</div>
+
+	<!-- 예약확인 영역 -->
+	<div class="confirm_area">
+		<div>
+			<p class="img_100"><img src="images/txt_reserv_address.png" alt="고객님과 가까운 매장명을 검색하거나 주소를 입력하세요."/></p>
+		</div>
+
+		<!-- tab :1 매장명 검색 -->
+		<div class="tab_search_1">
+			<!-- tab area -->
+			<div class="tab_search">
+				<ul>
+					<li><a href="#tab1_1"><img src="images/btn_search_1_on.png" alt="매장명 검색" /></a></li>
+					<li><a href="#tab1_2"><img src="images/btn_search_2_off.png" alt="지역명 검색" /></a></li>
+				</ul>
+			</div>
+			<!-- 매장명 입력 -->
+			<div class="input_area">
+				<input type="text" name="storename" placeholder="매장명을 입력하세요" />
+				<a href="javascript:sendStoreNameSearch();"><img src="images/btn_search.png" alt="매장명 검색" /></a>
+			</div>
+		</div>
+		<!-- //tab :1 매장명 검색 -->
+
+		<!-- tab :2 매장명 검색 -->
+		<div class="tab_search_2" style="display:none;">
+			<!-- tab area -->
+			<div class="tab_search">
+				<ul>
+					<li><a href="#tab2_1"><img src="images/btn_search_1_off.png" alt="매장명 검색" /></a></li>
+					<li><a href="#tab2_2"><img src="images/btn_search_2_on.png" alt="지역명 검색" /></a></li>
+				</ul>
+			</div>
+			<!-- 매장명 입력 -->
+			<div class="input_area">
+				<select id="store_area_list">
+					<option value="" selected="selected">== 지역 ==</option>
+				</select>
+				<select id="store_sublist">
+					<option value="" selected="selected">== 구/군 ==</option>
+				</select>
+				<a href="javascript:sendLocalNameSearch();"><img src="images/btn_search.png" alt="매장명 검색" /></a>
+			</div>
+		</div>
+		<!-- //tab :2 매장명 검색 -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.tab_search li:eq(0), .tab_search li:eq(2)').click(function(){
+					$('.tab_search_1').show();
+					$('.tab_search_2').hide();
+				});
+				$('.tab_search li:eq(1), .tab_search li:eq(3)').click(function(){
+					$('.tab_search_1').hide();
+					$('.tab_search_2').show();
+				});
+			})
+		</script>
+
+		<!-- 매장 리스트 -->
+		<div class="store_list_area" id="m_store_list">
+			<!-- (1) 검색전 출력문구 -->
+			<div class="txt_before">
+				고객님과 가까운 매장명을 검색하거나 주소를 입력하세요.
+			</div>
+			<!-- //(1) 검색전 출력문구 -->
+			
+			<!-- 2017-08-11 (2) 검색후 매장 리스트 -->
+			<!-- <ul>
+				<li>
+					<a href="#">
+						<label for="address1">
+							<p>강남구청역직영점11111111</p>
+							btn : 지도보기
+							<img src="images/btn_map_view.png" onclick="popHeightControl('popMapView','block'); return false;" alt="지도보기" />
+							<br />
+							서울 강남구 선릉로 635 1층 (논현동)서울 강남구 선릉로
+						</label>
+						<span>
+							<input type="radio" id="address1" class="ipt_rdo" />
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<label for="address2">
+							<p>강남구청역직영점2</p>
+							btn : 지도보기
+							<img src="images/btn_map_view.png" onclick="popHeightControl('popMapView','block'); return false;" alt="지도보기" />
+							<br />
+							두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 두번째 매장 주소 
+						</label>
+						<span>
+							<input type="radio" id="address2" class="ipt_rdo" />
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<label for="address3">
+							<p>강남구청역직영점33333333333333333333333</p>
+							btn : 지도보기
+							<img src="images/btn_map_view.png" onclick="popHeightControl('popMapView','block'); return false;" alt="지도보기" />
+							<br />
+							서울 강남구 선릉로 635 1층 (논현동)서울 강남구 선릉로
+						</label>
+						<span>
+							<input type="radio" id="address3" class="ipt_rdo" />
+						</span>
+					</a>
+				</li>
+			</ul> -->
+			<!-- //2017-08-11 (2) 검색후 매장 리스트 -->
+						
+		</div>
+		<!-- //매장 리스트 -->
+
+	</div>
+	<!-- //예약확인 영역 -->
+
+	<!-- 2017-02-28 추가 -->
+	<div class="txt_search_agree" style="padding:5% 0 0 0; text-align:Center;">
+		<input type="checkbox" id="storeAgree" />
+		<label for="storeAgree"><img src="images/txt_search_agree.png"  style="width:75%;" alt="본인은 주식회사 LG유플러스가 성명, 휴대폰 번호를 위 선택한 매장에서 예약확인, 예약가입 안내 및 개통 등에 필요한 절차 등 고지  (SMS, LMS, MMS, PUSH, 전화 등)업무 목적으로 처리 위탁하는 것에 동의합니다." /></label>
+	</div>
+	<!-- //2017-02-28 추가 -->
+
+	<!-- btn : 방문 매장 선택 완료 -->
+	<div class="btn_step_2">
+		<ul>
+			<li><a href="javascript:sendSelectStoreSubmit();"><img src="images/btn_reserv_4.png" alt="방문 매장 선택 완료" /></a></li>
+			<input type="hidden" name="reqSeqNo" value="" th:value="${reqSeqNo}"/>
+		</ul>
+	</div>
+    <script>
+    $(document).ready(function() {
+        getAddress1();
+        
+        $('#store_area_list').change(function(){
+            var address1 = $('#store_area_list option:selected').val();
+            if (address1) {
+                getAddress2(address1);
+            }
+        });
+    });
+    </script>
+    
+ </div>
+ 
+ 
+<!-- 2017-09-12 popup : 지도보기 -->
+<div class="pop_map_view" id="popMapView" style="display:none;">
+	<div class="positionR">
+		<!-- btn : 팝업 닫기 -->
+		<div class="btn_map_close">
+			<a href="javascript:popHeightControl('popMapView','none');"><img src="images/btn_map_close.png" alt="팝업 닫기" /></a>
+		</div>
+		
+		<!-- txt : 매장주소 -->
+		<div class="map_address">
+			<dl>
+				<dt>
+					<span>매장명</span>
+				</dt>
+				<dd>
+					<p id="mapDlrNm">강남구청 직영점강남구</p>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<span>주소</span>
+				</dt>
+				<dd>
+					<p id="mapAddress">
+						서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉로 서울 특별
+					</p>
+				</dd>
+			</dl>
+		</div>
+
+		
+		<!-- 지도 영역 -->
+		<div class="map_area">
+			<div id="imap"></div>
+		</div>
+	</div>
+</div>
+<!-- //2017-09-12 popup : 지도보기 -->
+<script>
+	//화면 정가운데 띄울 때 사용
+	function popHeightControl(divID,display,align){
+		// black bg
+		if(display=='block'){
+	
+			var scrolltop = $(window).scrollTop();
+			var docheight = $(document).height();
+			var winheight = $(window).height();
+			var popheight = $('#' + divID).height();
+			var poptop = scrolltop + winheight/2 - popheight/2;
+			if (poptop + popheight > docheight - 10) poptop = docheight - popheight - 10;
+	
+			$('#' + divID).css('top', poptop + 'px').show();
+			
+			$('#bg_layer').css('height', winheight).show();
+		}
+		else if(display=='none'){
+			$('#bg_layer').hide();
+		}
+		document.getElementById(divID).style.display=display;
+	}
+</script>   	
+
+
+</th:block>
+
+</body>
+</html>

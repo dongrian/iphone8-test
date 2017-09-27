@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+	<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f32da079137460aae16dcaf6cf3e0d3a&amp;libraries=services"></script>
+	<script src="common/js/map.js"></script>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+	<script src="common/js/search_store.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_event container">
+
+	<div class="pop_offline" id="popOffline" style="margin-bottom:15%;">
+		<div class="positionR">	
+			<div>
+				<p class="img_100"><img src="images/txt_offline_store_event_2.png" alt="고객님과 가까운 매장명을 검색하거나 주소를 입력하세요."/></p>
+			</div>	
+			
+			<!-- 예약확인 영역 -->
+			<div class="confirm_area">
+				<div>
+					<p class="img_100"><img src="images/txt_offline_store_event.png" alt="고객님과 가까운 매장명을 검색하거나 주소를 입력하세요."/></p>
+				</div>
+	
+				<!-- tab :1 매장명 검색 -->
+				<div class="tab_search_1">
+					<!-- tab area -->
+					<div class="tab_search">
+						<ul>
+							<li><a href="#tab1_1"><img src="images/btn_offline_tab1_on.jpg" alt="매장명 검색" /></a></li>
+							<li><a href="#tab1_2"><img src="images/btn_offline_tab2_off.jpg" alt="지역명 검색" /></a></li>
+						</ul>
+					</div>
+					<!-- 매장명 입력 -->
+					<div class="input_area">
+						<input type="text" name="storename" placeholder="매장명을 입력하세요" />
+						<a href="javascript:sendExStoreNameSearch();"><img src="images/btn_search.png" alt="매장명 검색" /></a>
+					</div>
+				</div>
+				<!-- //tab :1 매장명 검색 -->
+	
+				<!-- tab :2 매장명 검색 -->
+				<div class="tab_search_2" style="display:none;">
+					<!-- tab area -->
+					<div class="tab_search">
+						<ul>
+							<li><a href="#tab2_1"><img src="images/btn_offline_tab1_off.jpg" alt="매장명 검색" /></a></li>
+							<li><a href="#tab2_2"><img src="images/btn_offline_tab2_on.jpg" alt="지역명 검색" /></a></li>
+						</ul>
+					</div>
+					<!-- 매장명 입력 -->
+					<div class="input_area">
+						<select id="store_area_list">
+							<option value="" selected="selected">== 지역 ==</option>
+						</select>
+						<select id="store_sublist">
+							<option value="" selected="selected">== 구/군 ==</option>
+						</select>
+						<a href="javascript:sendExLocalNameSearch();"><img src="images/btn_search.png" alt="매장명 검색" /></a>
+					</div>
+				</div>
+				<!-- //tab :2 매장명 검색 -->
+				
+				<script type="text/javascript">
+					$(document).ready(function(){
+						$('.tab_search li:eq(0), .tab_search li:eq(2)').click(function(){
+							$('.tab_search_1').show();
+							$('.tab_search_2').hide();
+						});
+						$('.tab_search li:eq(1), .tab_search li:eq(3)').click(function(){
+							$('.tab_search_1').hide();
+							$('.tab_search_2').show();
+						});
+					})
+				</script>
+	
+				<!-- 매장 리스트 -->
+				<div class="store_list_area" id="m_store_list" style="min-height:300px;">
+				</div>
+				<!-- //매장 리스트 -->
+				<!-- btn : 확인
+				<div class="btn_offline_ok">
+					<img src="images/pop_offline_bottom_event.jpg"/>
+				</div> -->
+	
+			</div>
+			<!-- //예약확인 영역 -->		
+		</div>
+	</div>
+</div>
+	<script>
+    $(document).ready(function() {
+    	getAddress1();
+    	
+        $('#store_area_list').change(function(){
+            var address1 = $('#store_area_list option:selected').val();
+            if (address1) {
+            	getAddress2(address1);
+            }
+        });
+        
+        //popHeightControl('popMapView','block');
+    });
+   	</script>
+
+<!-- 2017-09-12 popup : 지도보기 -->
+<div class="pop_map_view" id="popMapView" style="display:none;">
+	<div class="positionR">
+		<!-- btn : 팝업 닫기 -->
+		<div class="btn_map_close">
+			<a href="javascript:popHeightControl('popMapView','none');"><img src="images/btn_map_close.png" alt="팝업 닫기" /></a>
+		</div>
+		
+		<!-- txt : 매장주소 -->
+		<div class="map_address">
+			<dl>
+				<dt>
+					<span>매장명</span>
+				</dt>
+				<dd>
+					<p id="mapDlrNm"></p>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<span>주소</span>
+				</dt>
+				<dd>
+					<p id="mapAddress">
+					</p>
+				</dd>
+			</dl>
+		</div>
+
+		
+		<!-- 지도 영역 -->
+		<div class="map_area">
+			<div id="imap"></div>
+		</div>
+	</div>
+</div>
+<!-- //2017-09-12 popup : 지도보기 -->
+<script>
+	//화면 정가운데 띄울 때 사용
+	function popHeightControl(divID,display,align){
+		// black bg
+		if(display=='block'){
+	
+			var scrolltop = $(window).scrollTop();
+			var docheight = $(document).height();
+			var winheight = $(window).height();
+			var popheight = $('#' + divID).height();
+			var poptop = scrolltop + winheight/2 - popheight/2;
+			if (poptop + popheight > docheight - 10) poptop = docheight - popheight - 10;
+	
+			$('#' + divID).css('top', poptop + 'px').show();
+			
+			$('#bg_layer').css('height', winheight).show();
+		}
+		else if(display=='none'){
+			$('#bg_layer').hide();
+		}
+		document.getElementById(divID).style.display=display;
+	}
+</script>   	
+
+</th:block>
+
+</body>
+</html>

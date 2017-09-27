@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="contBlock contents confirm">
+    
+    	<div class="colorBlock"></div>
+    
+        <div class="contElements">
+        
+            <!-- 본인인증 입력폼 -->
+            <div class="stepBlock ownCertify">
+                
+                <div class="title"><img src="images/confirm_title.png"/></div>
+                
+                <div class="userInfoInputBlock">
+                    <img src="images/confirm_form_title1.jpg"/>
+                    <div class="blackline"></div>
+                    <div class="inputFieldBlock">
+                        <form id="confirmForm" action="reserve-confirm2" method="post">
+                        <input class="inputBlock"  type="text" name="username" id="username" maxlength="25"  />
+                        <input class="inputBlock"  type="text" name="handphone" id="handphone"  maxlength="11" />
+                        <a href="javascript:sendOtp();"><img class="certifyGetBtn" src="images/cont4_get_certify.jpg"/></a>
+                        </form>
+                    </div>
+                    <img src="images/confirm_form_title2.jpg"/>
+                    <div class="blackline"></div>
+                    <div class="inputFieldBlock">
+                        <input class="inputBlock"  type="text" name="certifynum" id="certifynum" />
+                        <a href="javascript:sendAuth();"><img class="certifyConfirmBtn" src="images/cont4_confirm_certify.jpg"/></a>
+                    </div>
+                    <!-- 2017-02-24 -->
+                  	<div class="certifyTimer" id="timer"></div>
+                  	<!-- 2017-02-24 -->
+                    <div class="certifySubmit">
+                        <a href="javascript:sendAceCount('V30booking2_confirm');reserveConfirm();"><img src="images/cont4_submit.jpg"/></a>
+                    </div>
+                    <!-- div class="certifyNotice"><img src="images/confirm_form_script.jpg"/></div  -->
+                </div>
+            </div>
+            <!-- //본인인증 입력폼 -->
+        
+        </div>
+    
+    </div>
+</th:block>
+
+</body>
+</html>

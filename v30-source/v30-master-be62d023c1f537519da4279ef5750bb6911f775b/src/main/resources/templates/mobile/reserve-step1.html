@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_reserv_1">
+
+	<!-- img : 예약가입 신청 -->
+	<div class="step_area">
+		<p><img src="images/img_step_1.png" alt="1단계 예약방법 선택"/></p>
+	</div>
+
+	<!-- btn : 예약방법 선택 -->
+	<div class="reserv_select_list">
+		<!-- 매장방문 개통 -->
+		<dl>
+			<dt>
+				<img src="images/img_reserv_1.png" alt="[매장 방문하여 개통하기] 예약가입 신청 후, 가까운 매장에 방문하여 가입신청서 작성 및 휴대폰 개통하세요 !"/>
+			</dt>
+			<dd>
+				<a href="javascript:alert('사전예약이 종료되었습니다.');"  onclick="FacebookPixelCode(6);"><img src="images/btn_reserv_1.png" alt="매장 예약하기" /></a>
+			</dd>
+		</dl>
+		<!-- 온라인 직영몰 개통 -->
+		<dl>
+			<dt>
+				<img src="images/img_reserv_2.png" alt="[온라인 직영몰에서 개통하기] 예약가입 신청 후, 매장방문 없이 U+Shop에서 가입신청서를 작성하고, 휴대폰은 택배로 수령하세요 !"/>
+			</dt>
+			<dd>
+				<a href="http://www.uplus.co.kr/sqr/evnt/reserve/ReserveRegistFormV30.hpi" target="_blank"><img src="images/btn_reserv_2.png" alt="U+ SHOP 예약하기" /></a>
+			</dd>
+		</dl>
+        <!-- 2017-02-23 카카오톡 플러스친구 개통 -->
+        <dl>
+            <dt>
+                <img src="images/img_reserv_3.png" alt="[카카오톡 플러스친구로 예약하기] 카카오톡 플러스친구에서 간편하게 예약가입 신청하세요!"/>
+            </dt>
+            <dd style="border:0;"><!-- 2017-09-11 추가 -->
+                <a href="http://plus.kakao.com/home/@LG유플러스" target="_blank" onclick="FacebookPixelCode(7);"><img src="images/btn_reserv_3_2.png" alt="예약하러 가기" /></a>
+            </dd>
+        </dl>
+        <!-- //2017-02-23 카카오톡 플러스친구 개통 -->
+
+	</div>
+	
+</div>
+
+</th:block>
+
+</body>
+</html>

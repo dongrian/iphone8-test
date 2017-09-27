@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+
+
+
+	<!-- GNB -->
+	<div class="contBlock gnb" th:fragment="header">
+	    
+	    <div class="contElements">
+	        
+	        <!-- top logo -->
+	        <div class="topLogo"><a href="main"><img src="images/top_logo.png"/></a></div>
+	        <!-- //top logo -->
+	        
+	        <!-- menu block -->
+	        <div class="menuBlock" th:with="view=${#httpServletRequest.getServletPath()}">
+	            <div class="menu">
+	                <a href="javascript:alert('사전예약이 종료되었습니다.');" onclick="FacebookPixelCode(2);"><img src="images/menu_on_1.jpg" th:src="${#strings.startsWith(view,'/reserve') and #strings.length(view) == 9 ? 'images/menu_on_1.jpg' : 'images/menu_off_1.jpg'}"/></a>
+	            </div>
+	            <div class="menu">
+	                <a href="benefit" onclick="FacebookPixelCode(3);"><img src="images/menu_off_2.jpg" th:src="${#strings.startsWith(view,'/benefit') ? 'images/menu_on_2.jpg' : 'images/menu_off_2.jpg'}"/></a>
+	            </div>
+	            <div class="menu">
+	                <a href="reserve-confirm1"><img src="images/menu_off_3.jpg" th:src="${#strings.startsWith(view,'/reserve-confirm') ? 'images/menu_on_3.jpg' : 'images/menu_off_3.jpg'}"/></a>
+	            </div>
+	            <div class="menu">
+	                <a href="about" onclick="FacebookPixelCode(5);"><img src="images/menu_off_4.jpg" th:src="${#strings.startsWith(view,'/about') ? 'images/menu_on_4.jpg' : 'images/menu_off_4.jpg'}"/></a>
+	            </div>
+	            <!-- 
+	            <div class="menu">
+	                <a href="question"><img src="images/menu_off_5.jpg" th:src="${#strings.startsWith(view,'/question') ? 'images/menu_on_5.jpg' : 'images/menu_off_5.jpg'}"/></a>
+	            </div>
+	            <div class="menu">
+	                <a href="event"><img src="images/menu_off_6.jpg" th:src="${#strings.startsWith(view,'/event') ? 'images/menu_on_6.jpg' : 'images/menu_off_6.jpg'}"/></a>
+	            </div>
+	             -->
+	        </div>
+	        <!-- //menu block -->
+	        
+	    </div>
+	    
+	</div>
+	<!-- //GNB -->
+</body>
+</html>

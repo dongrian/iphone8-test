@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_confirm_1">
+
+	<!-- txt -->
+	<div class="txt_confirm">
+		<p class="img_100"><img src="images/txt_confirm.png" alt="예약자 본인인증, 예약 시 입력한 개인정보를 정확하게 입력해 주세요.." /></p>
+	</div>
+
+	<!-- 고객 정보입력 -->
+	<div class="user_info_area">
+		<!-- 2017-09-11 txt : 고객 정보 입력 -->
+		<div class="txt_user_info">
+			<!-- <img src="images/txt_user_info.png" alt="고객 정보 입력" /> -->
+		</div>
+			
+		<form id="confirmForm" action="reserve-confirm2" method="post">
+		<dl>
+			<dt><img src="images/txt_name.png" alt="이름" /></dt>
+			<dd><input type="text" name="username" id="username" style="width:97%;" title="이름 입력" /></dd>
+		</dl>
+		<dl>
+			<dt><img src="images/txt_phone.png" alt="휴대폰번호" /></dt>
+			<dd>
+				<input type="tel" name="handphone" class="" style="width:70%" placeholder="예시) 01012345678" title="휴대폰번호 입력" />
+				<a href="javascript:sendOtp();"><img src="images/btn_num_chk.png" alt="휴대폰번호 인증" /></a>
+			</dd>
+		</dl>
+		<dl>
+			<dt><img src="images/txt_num_chk.png" alt="인증번호" /></dt>
+			<dd>
+				<input type="tel" name="certifynum" id="certifynum" style="width:70%" title="인증번호 입력" />
+				<a href="javascript:sendAuth();"><img src="images/btn_ok_1.png" alt="인증번호 확인" /></a>
+				<p id="timer"></p>
+			</dd>
+		</dl>
+        </form>
+
+		<!-- 2017-09-11 txt 
+		<div class="txt_callcenter">
+			- 문의 : 고객센터 (<a href="tel:1644-5100">1644-5100</a>)
+		</div>-->
+
+	</div>
+	<!-- //고객 정보입력 -->
+
+	<!-- btn : 예약 확인하기 -->
+	<div class="btn_step_2">
+		<ul>
+			<li><a href="javascript:reserveConfirm();"><img src="images/btn_confirm.png" alt="예약 확인하기" /></a></li>
+		</ul>
+	</div>
+	
+</div>
+
+</th:block>
+
+</body>
+</html>

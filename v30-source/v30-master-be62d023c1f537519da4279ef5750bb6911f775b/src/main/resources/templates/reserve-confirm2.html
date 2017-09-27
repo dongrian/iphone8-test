@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+	<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f32da079137460aae16dcaf6cf3e0d3a&amp;libraries=services"></script>
+	<script src="common/js/map.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="contBlock contents infolist">
+    
+    	<div class="colorBlock"></div>
+    
+        <div class="contElements">
+            
+            <!-- 예약가입내역 -->
+            <div class="stepBlock reserveInfoList">
+                
+                <div class="title"><img src="images/info_list_title.png"/></div>
+                
+                <div class="graphTitle"><img src="images/infolist_graph_title.jpg"/></div>
+                
+                <!--  2017-02-23 table 태그로 바꿨습니다.  끼워 맞춰 놓긴 했는데 확인 부탁드립니다. -->  
+                <table cellpadding="0" cellspacing="0" border="0" class="infoListBlock">
+                    <colgroup>
+                        <col width="120" />
+                        <col width="110" />
+                        <col width="90" />
+                        <col width="128" />
+                        <col width="100" />
+                        <col width="160" />
+                        <col width="110" />
+                        <col width="180" />
+                    </colgroup>
+                    <tr th:each="order,iter : ${orders}" th:id="${order.reqSeqNo}">
+                        <td th:text="${order.reqDt}">2017.03.01</td>
+                        <td th:text="${order.reqSeqNo}">234532</td>
+                        <td th:text="${order.colrNm}">티탄</td>
+                        <td th:text="${order.instTypeNm}">마이크로사이트</td>
+                        <td th:text="${order.receNm}">택배</td>
+                        <td th:text="${order.dlrNm}">남부시장</td>
+                        <td th:text="${order.statNm}" style="background:#ebebeb;">개통완료</td>
+                        <td th:switch="${order.statCd}"  style="background:#ebebeb;">
+                        <!-- 2017-02-28 이미지 추가
+						confirm_btn_1.png 매장 정보보기
+						confirm_btn_2.png 매장 선택하기
+						confirm_btn_3.png 신청서 입력하기
+						confirm_btn_del.jpg 삭제
+						<a href="#"><img src="images/confirm_btn_1.png" alt="매장 정보보기" /></a> -->
+                            <a href="#a" th:if="${order.enableWrite}" th:href="@{http://www.uplus.co.kr/sqr/evnt/reserve/ReserveProdDetailV30.hpi(reqSeqNo=${order.reqSeqNo},channelId=${order.instTypeCd},resvSaleCode=${order.resvSaleCode})}" target="_blank"><img src="images/confirm_btn_3.png" alt="신청서 입력하기"/></a>
+                            <a href="#b" th:if="${order.orgCd} eq '' and ${order.statCd} eq 'T'" th:href="${'reserve4?reqSeqNo=' + order.reqSeqNo}"><img src="images/confirm_btn_2.png" alt="매장 선택하기"/></a>
+                            <a href="#c" th:if="${order.orgCd} ne '' and ${order.statCd} eq 'T'" onclick="javascript:popOrgInfo(this);" th:attr="data-dlr-nm=${order.dlrNm},data-org-tel-no=${order.orgTelNo},data-org-address=${order.orgAddress}"><img src="images/confirm_btn_1.png" alt="매장 정보보기"/></a>
+                            <a href="#d" th:if="${order.enableCancel}" onclick="javascript:sendOrderCancel(this);" th:attr="data-seq=${order.reqSeqNo}"><img src="images/confirm_btn_del.jpg"/></a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                
+                <div th:if="${#lists.isEmpty(orders)}">신청 내역이 없습니다.</div>
+                
+                <div class="blackline"></div>
+                <div class="infolistScript"><img src="images/infolist_script.jpg"/></div>
+            
+            </div>
+            <!-- 예약가입내역 -->
+
+        
+        </div>
+    
+    </div>
+   	
+<!-- 2017-09-12 popup : 지도보기 -->
+<div class="pop_map_view" id="popMapView" style="display:none;">
+	<div class="positionR">
+
+		<div class="btn_pop_close">
+			<a href="javascript:popHeightControl('popMapView','none','top');"><img src="images/pc_btn_pop_close.png" alt="" /></a>
+		</div>
+
+		<!-- txt : 매장주소 -->
+		<div class="map_address">
+			<dl>
+				<dt>
+					<span>매장명</span>
+				</dt>
+				<dd>
+					<p id="mapDlrNm">강남구청 직영점</p>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<span>주소</span>
+				</dt>
+				<dd>
+					<p id="mapAddress">
+						서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉 
+					</p>
+				</dd>
+			</dl>
+		</div>
+
+		<!-- 지도 영역 -->
+		<div class="map_area">
+			<div id="imap"></div>
+		</div>
+
+		<!-- btn : 확인 취소 -->
+		<div class="btn_map_center">
+			<a href="javascript:popHeightControl('popMapView','none','top');"><img src="images/pc_btn_map_1.png" alt="확인" /></a>
+		</div>
+
+		<p><img src="images/pc_pop_map_view.png" alt="" /></p>
+	</div>
+</div>
+<script>
+	//화면 정가운데 띄울 때 사용
+	function popHeightControl(divID,display,align){
+		// black bg
+		if(display=='block'){
+	
+			var scrolltop = $(window).scrollTop();
+			var docheight = $(document).height();
+			var winheight = $(window).height();
+			var popheight = $('#' + divID).height();
+			var poptop = scrolltop + winheight/2 - popheight/2;
+			if (poptop + popheight > docheight - 10) poptop = docheight - popheight - 10;
+	
+			$('#' + divID).css('top', poptop + 'px').show();
+			
+			$('#bg_layer').css('height', winheight).show();
+		}
+		else if(display=='none'){
+			$('#bg_layer').hide();
+		}
+		document.getElementById(divID).style.display=display;
+	}
+</script>   
+<!-- //2017-09-12 popup : 지도보기 -->   	
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+	<script src="common/js/server.js"></script>
+</head>
+<body>
+
+<th:block layout:fragment="content">  
+    <div class="contBlock contents reservestep2">
+    	<div class="colorBlock"></div>
+   		<div class="contElements">   
+	        <!-- step2 -->
+	        <div class="stepBlock step2">
+	            <div class="stepLocation"><img src="images/step_2.png"/></div>
+	            <div class="phoneSlider">
+                    <!--  2017-02-23  -->
+                    <div class="sliderImgs">
+                    </div>
+                    <!--  //2017-02-23  -->
+	                <div class="arrowController left"><a href="javascript:changeSlideContents(-1);"><img src="images/arrow_left.png" /></a></div>
+	                <div class="arrowController right"><a href="javascript:changeSlideContents(1);"><img src="images/arrow_right.png" /></a></div>
+	                <div class="sliderThums">
+	                	<img src="images/phone_slider_thum_1_1.png"/>
+	                	<img src="images/phone_slider_thum_1_2.png"/>
+	                	<img src="images/phone_slider_thum_1_3.png"/>
+	                </div>
+	            </div>
+	            <div class="userInformBlock">
+	                <div class="elementBg"><img src="images/step_2_form_bg.jpg"/></div>
+					<div class="deviceSelectors">
+						<div class="deviceSelectorBtnSet">
+							<div class="deviceSelectBtn"><a href="javascript:setSelectDevice(0);"><img src="images/step_2_deviceselect_off_1.png"/></a></div>
+							<div class="deviceSelectBtn"><a href="javascript:setSelectDevice(1);"><img src="images/step_2_deviceselect_off_2.png"/></a></div>
+						</div>
+					</div>
+		            <div class="colorSelectors">
+		                <div class="colorSelectorBtnSet">
+		                    <div class="colorSelectBtn"><a href="javascript:setSelectPhoneColor(0);"><img src="images/step_2_colorselect_off_1.png"/></a></div>
+		                   <div class="colorSelectBtn"> <a href="javascript:setSelectPhoneColor(1);"><img src="images/step_2_colorselect_off_2.png"/></a></div>
+		                    <div class="colorSelectBtn"><a href="javascript:setSelectPhoneColor(2);"><img src="images/step_2_colorselect_off_3.png"/></a></div>
+		                    <!-- div class="colorSelectBtn"><a href="javascript:setSelectPhoneColor(3);"><img src="images/step_2_colorselect_off_4.png"/></a></div  -->
+		                </div>
+		            </div>
+	                <div class="inputFieldBlock">
+	                    <input class="inputBlock"  type="text" name="username" id="username" maxlength="25"  />
+	                    <input class="inputBlock"  type="text" name="handphone" id="handphone"  maxlength="11" />
+	                </div>
+	                <div class="agreeChkerBlock">
+		                <div class="privacyAgreeBlock reservereg">
+		                    <input type="checkbox" id="btnAgree" name="btnAgree" value="Y"/>
+		                    <label for="btnAgree"><img src="images/step_2_agree_txt1.jpg" /></label>
+		                </div>
+		                <div class="privacyAgreeBlock giftagree">
+		                    <input type="checkbox" id="btnAgree2" name="btnAgree2" value="Y" />
+		                    <label for="btnAgree2"><img src="images/step_2_agree_txt2.jpg" /></label>
+		                </div>
+	                    <!--  2017-02-23  -->
+	                    <div class="agreeTxtOpener reservereg"><a href="javascript:openAgreePop(0);" ><img src="images/cont4_agree_pop.jpg"/></a></div>
+	                    <!--  //2017-02-23  -->
+	                    <!--  2017-02-23  -->
+	                    <div class="agreeTxtOpener giftagree"><a href="javascript:openAgreePop(1);"><img src="images/cont4_agree_pop.jpg"/></a></div>
+	                    <!--  //2017-02-23  -->
+                    </div>
+		            <div class="userInformSubmitBlock">
+		                <div class="userInformSubmit"><a href="javascript:;" onclick="sendAceCount('V30booking2_color');sendReserveUserInfo();"><img src="images/step_2_submit.jpg"/></a></div>
+		            </div>
+                </div>
+	        </div>
+	        <!-- //step2 -->
+			<div class="agreePopBlock">
+				<img src="images/agree_pop1.jpg"/>
+				<a href="javascript:closeAgreePop();"><img class="agreePopClose" src="images/pop_close.jpg"/></a>
+			</div>
+			<div class="agreePopBlock">
+				<img src="images/agree_pop2.jpg"/>
+				<a href="javascript:closeAgreePop();"><img class="agreePopClose" src="images/pop_close.jpg"/></a>
+			</div>
+			<script>
+			function openAgreePop(idx){
+				$('.agreePopBlock').eq(idx).css('display', 'block');
+			}
+			function closeAgreePop(){
+				$('.agreePopBlock').css('display', 'none');
+			}
+			</script>
+		</div>
+	</div>
+</th:block>
+
+</body>
+</html>

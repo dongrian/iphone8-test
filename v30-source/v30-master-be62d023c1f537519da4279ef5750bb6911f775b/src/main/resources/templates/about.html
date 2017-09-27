@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+</head>
+<body>
+
+<th:block layout:fragment="content">		
+    <div class="contBlock contents about">
+    
+        <!-- contElements -->
+        <div>
+        	<div class="about_v30_list">
+        		<ul>
+        			<li class="bg_about_v30_1">
+        				<span>about V30</span>
+        			</li>
+        			<li class="bg_about_v30_2">
+        				<span>about V30</span>
+        			</li>
+        			<li class="bg_about_v30_3">
+        				<span>about V30</span>
+        			</li>
+        			
+        			<li class="bg_about_v30_4">
+        				<span>about V30</span>
+        			</li>
+        			
+        			<li class="bg_about_v30_5">
+        				<span>about V30</span>
+        			</li>
+        			<li class="bg_about_v30_6">
+        				<span>about V30</span>
+        			</li>
+        			<li class="bg_about_v30_7">
+        				<span>about V30</span>
+        			</li>
+        		</ul>
+        	</div>
+        	
+        </div>
+        <!-- contElements -->
+    
+    </div>
+    <script>
+    	var aboutHeight = 0;
+    	$('.about_v30_list ul li').each(function(idx, item){
+    		var height = $(item).height()*.7;
+    		$(item).height(height);
+    		
+    		aboutHeight += height;
+    	});
+    	$('.contBlock.contents.about').height(aboutHeight);
+    </script>
+</th:block>
+
+</body>
+</html>

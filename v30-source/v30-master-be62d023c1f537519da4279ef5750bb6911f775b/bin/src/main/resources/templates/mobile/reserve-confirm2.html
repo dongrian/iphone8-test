@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+	<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f32da079137460aae16dcaf6cf3e0d3a&amp;libraries=services"></script>
+	<script src="common/js/map.js"></script>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_confirm_2">
+
+	<!-- txt -->
+	<div class="txt_confirm">
+		<p class="img_100"><img src="images/txt_confirm_2.png" alt="예약가입 내역, 1회 이상 예약가입자의 경우, 페이지 이동으로 신청 내역을 확인할 수 있습니다." /></p>
+	</div>
+
+	<!-- 예약가입 내역 -->
+	<div class="confirm_table_area">
+
+		<table cellpadding="0" cellspacing="0" border="0" class=""  th:each="order : ${orders}" th:id="${order.reqSeqNo}">
+			<colgroup>
+				<col width="35%"/>
+				<col width="*"/>
+			</colgroup>
+			<tr>
+				<th class="bg_1"><span>신청일자</span></th>
+				<td><span th:text="${order.reqDt}">2017.03.22</span></td>
+			</tr>
+			<tr>
+				<th class="bg_1"><span>예약번호</span></th>
+				<td><span th:text="${order.reqSeqNo}">987654232</span></td>
+			</tr>
+			<!-- 2017-08-11 추가 -->
+			<tr>
+				<th class="bg_1"><span>기기</span></th>
+				<td><span>V30 (64GB)</span></td>
+			</tr>
+			<!-- //2017-08-11 추가 -->
+			<tr>
+				<th class="bg_1"><span>색상</span></th>
+				<td><span th:text="${order.colrNm}">SILVER</span></td>
+			</tr>
+			<tr>
+				<th class="bg_1"><span>신청채널</span></th>
+				<td><span th:text="${order.instTypeNm}">카카오톡</span></td>
+			</tr>
+			<tr>
+				<th class="bg_1"><span>수령방법</span></th>
+				<td><span th:text="${order.receNm}">택배</span></td>
+			</tr>
+			<!-- 
+			<tr>
+				<th class="bg_2"><span>개통 지점 정보</span></th>
+				<td><span></span></td>
+			</tr>
+			 -->
+			<tr>
+				<th class="bg_2"><span>방문 매장명</span></th>
+				<td><span th:text="${order.dlrNm}">가좌마을직영점</span></td>
+			</tr>
+			<!--
+			<tr>
+				<th class="bg_2"><span>- 전화번호</span></th>
+				<td><span><a href="tel:070-7878-7878" th:href="${'tel:' + order.orgTelNo}" th:text="${order.orgTelNo}">070-7878-7878</a></span></td>
+			</tr>
+			 -->
+			<tr>
+				<th class="bg_3"><span>진행상태</span></th>
+				<td class="bg_3"><span th:text="${order.statNm}">신청서 미입력</span></td>
+			</tr>
+			<tr>
+				<th class="bg_3"><span>다음단계</span></th>
+				<td class="bg_3">
+					<!-- 2017-02-28 이미지 추가
+						btn_next_1.png 신청서 입력하기
+						btn_next_2.png 삭제
+						btn_next_3.png 매장 정보보기
+						btn_next_4.png 매장 선택하기
+					<a href="#"><img src="images/btn_next_3.png" alt="매장 정보보기" /></a>
+					<a href="#"><img src="images/btn_next_4.png" alt="매장 선택하기" /></a> -->
+					<a href="#a" th:if="${order.enableWrite}" th:href="@{http://www.uplus.co.kr/sqr/evnt/reserve/ReserveProdDetailV30.hpi(reqSeqNo=${order.reqSeqNo},channelId=${order.instTypeCd},resvSaleCode=${order.resvSaleCode})}" target="_blank"><img src="images/btn_next_1.png" style="width:45%;" alt="신청서 입력하기" /></a>
+					<a href="#b" th:if="${order.orgCd} eq '' and ${order.statCd} eq 'T'" th:href="${'reserve4?reqSeqNo=' + order.reqSeqNo}"><img src="images/btn_next_4.png" style="width:45%;" alt="매장 선택하기"/></a>
+                    <a href="#c" th:if="${order.orgCd} ne '' and ${order.statCd} eq 'T'" onclick="javascript:popOrgInfo(this);" th:attr="data-dlr-nm=${order.dlrNm},data-org-tel-no=${order.orgTelNo},data-org-address=${order.orgAddress}"><img src="images/btn_next_3.png" style="width:45%;" alt="매장 정보보기"/></a>
+					<a href="#d" th:if="${order.enableCancel}" onclick="javascript:sendOrderCancel(this);" th:attr="data-seq=${order.reqSeqNo}"><img src="images/btn_next_2.png" style="width:45%;" alt="삭제" /></a>
+				</td>
+			</tr>
+		</table>
+		
+		<div style="font-size:28px; padding:0 0 100px 0;" th:if="${#lists.isEmpty(orders)}">신청 내역이 없습니다.</div>
+
+
+	<!-- 2017-09-11 추가 -->
+	<div class="noti_area">
+		<p class="img_100"><img src="images/txt_noti_3.png" alt="방문하실 LG유플러스 매장을 선택해 주세요! 선택한 매장에 방문하여 가입신청서를 작성하시면  개통이 정상적으로 완료됩니다." /></p>
+	</div>
+	<!-- //2017-09-11 추가 -->
+	
+	</div>
+	<!-- //예약가입 내역 -->
+
+	<!-- txt
+	<div class="txt_confirm_2">
+		- 매장을 선택하지 않은 경우, 가까운 LG유플러스 매장에 방문해 주세요.
+	</div> -->
+
+</div>
+<!-- 2017-09-12 popup : 지도보기 -->
+<div class="pop_map_view" id="popMapView" style="display:none;">
+	<div class="positionR">
+		<!-- btn : 팝업 닫기 -->
+		<div class="btn_map_close">
+			<a href="javascript:popHeightControl('popMapView','none');"><img src="images/btn_map_close.png" alt="팝업 닫기" /></a>
+		</div>
+		
+		<!-- txt : 매장주소 -->
+		<div class="map_address">
+			<dl>
+				<dt>
+					<span>매장명</span>
+				</dt>
+				<dd>
+					<p id="mapDlrNm">강남구청 직영점강남구</p>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<span>주소</span>
+				</dt>
+				<dd>
+					<p id="mapAddress">
+						서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉로 서울 특별시 강남구 선릉로 서울 특별
+					</p>
+				</dd>
+			</dl>
+		</div>
+
+		
+		<!-- 지도 영역 -->
+		<div class="map_area">
+			<div id="imap"></div>
+		</div>
+	</div>
+</div>
+<!-- //2017-09-12 popup : 지도보기 -->
+<script>
+	//화면 정가운데 띄울 때 사용
+	function popHeightControl(divID,display,align){
+		// black bg
+		if(display=='block'){
+	
+			var scrolltop = $(window).scrollTop();
+			var docheight = $(document).height();
+			var winheight = $(window).height();
+			var popheight = $('#' + divID).height();
+			var poptop = scrolltop + winheight/2 - popheight/2;
+			if (poptop + popheight > docheight - 10) poptop = docheight - popheight - 10;
+	
+			$('#' + divID).css('top', poptop + 'px').show();
+			
+			$('#bg_layer').css('height', winheight).show();
+		}
+		else if(display=='none'){
+			$('#bg_layer').hide();
+		}
+		document.getElementById(divID).style.display=display;
+	}
+</script>   
+
+</th:block>
+
+</body>
+</html>

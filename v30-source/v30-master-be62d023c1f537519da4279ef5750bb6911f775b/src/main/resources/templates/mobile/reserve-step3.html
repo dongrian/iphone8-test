@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+	<script>
+	FacebookPixelCode(8);
+	</script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<div class="sec_reserv_3">
+	
+	<!-- img : 예약가입 신청 -->
+	<div class="step_area">
+		<p><img src="images/img_step_2.png" alt="2단계 예약하기" /></p>
+	</div>
+
+	<!-- 예약확인 영역 -->
+	<div class="confirm_area">
+		<div>
+			<p class="img_100"><img src="images/txt_reserv_confirm.png" alt="예약이 정상 접수 되었습니다! 아래 예약 정보 확인 후, 방문할 매장을 선택해주세요." /></p>
+		</div>
+		<div>
+			<p class="img_100"><img th:src="@{'images/img_confirm_color_' + ${order.colrCd} + '.jpg'}" alt="예약한 단말기" /></p>
+		</div>
+		<div class="confirm_list">
+			<dl>
+				<dt>이름</dt>
+				<dd th:text="${order.name}"></dd>
+			</dl>
+			<dl>
+				<dt>휴대폰 번호</dt>
+				<dd th:text="${order.phonNo}"></dd>
+			</dl>
+			<dl>
+				<dt>예약번호</dt>
+				<dd th:text="${order.reqSeqNo}"></dd>
+			</dl>
+			<!-- 2017-08-11 추가 -->
+			<dl>
+				<dt>휴대폰 모델명</dt>
+				<dd th:text="${order.modTypNm}"></dd>
+			</dl>
+			<dl>
+				<dt>저장공간</dt>
+				<dd th:text="${order.sizeNm}"></dd>
+			</dl>
+			<!-- //2017-08-11 추가 -->
+			<dl>
+				<dt>색상</dt>
+				<dd th:text="${order.colrNm}"></dd>
+			</dl>
+			<!--  2017-09-11 삭제
+			<p>
+				방문을 원하는 LG유플러스 매장을 선택해 주세요!<br />
+				선택한 매장에 방문하여 가입신청서를 작성하셔야 개통이 가능합니다.
+			</p>
+			 -->
+		</div>
+	</div>
+	<!-- //예약확인 영역 -->
+
+	<!-- 2017-09-11 추가 -->
+	<div class="noti_area">
+		<p class="img_100"><img src="images/txt_noti.png" alt="방문하실 LG유플러스 매장을 선택해 주세요! 선택한 매장에 방문하여 가입신청서를 작성하시면  개통이 정상적으로 완료됩니다." /></p>
+	</div>
+	<!-- //2017-09-11 추가 -->
+	
+	<!-- btn : 선택 버튼 -->
+	<div class="btn_step_2">
+		<ul>
+			<li><a href="reserve4" th:href="@{'reserve4?reqSeqNo=' + ${order.reqSeqNo}}" ><img src="images/btn_step_2_1.png" alt="방문 매장 선택하기" /></a></li>
+			<li><a href="reserve5" th:href="@{'reserve5?reqSeqNo=' + ${order.reqSeqNo}}" ><img src="images/btn_step_2_2.png" alt="나중에 선택하기" /></a></li>
+		</ul>
+	</div>
+	
+</div>
+	
+</th:block>
+
+</body>
+</html>

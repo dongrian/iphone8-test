@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<!-- header -->
+<header class="header" th:fragment="header">
+	<!-- btn : h1 logo -->
+	<section class="h1_logo">
+		<a href="main"><img src="images/h1_logo.png" alt="LG U+" /></a>
+	</section>
+	<!-- nav -->
+	<nav class="nav">
+		<ul th:with="view=${#httpServletRequest.getServletPath()}">
+			<li><a href="javascript:alert('사전예약이 종료되었습니다.');" onclick="FacebookPixelCode(2);"><img src="images/btn_gnb_1_on.png" alt="예약가입 신청" th:src="${#strings.startsWith(view,'/reserve') and #strings.length(view) == 9 ? 'images/btn_gnb_1_on.png' : 'images/btn_gnb_1_off.png'}"/></a></li>
+			<li><a href="benefit" onclick="FacebookPixelCode(3);"><img src="images/btn_gnb_2_off.png" alt="유플러스만의 구매혜택" th:src="${#strings.startsWith(view,'/benefit') ? 'images/btn_gnb_2_on.png' : 'images/btn_gnb_2_off.png'}"/></a></li>
+			<li><a href="reserve-confirm1"><img src="images/btn_gnb_3_off.png" alt="예약가입 확인" th:src="${#strings.startsWith(view,'/reserve-confirm') ? 'images/btn_gnb_3_on.png' : 'images/btn_gnb_3_off.png'}"/></a></li>
+			<li><a href="about" onclick="FacebookPixelCode(5);"><img src="images/btn_gnb_4_off.png" alt="ABOUT V30" th:src="${#strings.startsWith(view,'/about') ? 'images/btn_gnb_4_on.png' : 'images/btn_gnb_4_off.png'}"/></a></li>
+			<li><a href="question"><img src="images/btn_gnb_5_off.png" alt="자주하는 질문" th:src="${#strings.startsWith(view,'/question') ? 'images/btn_gnb_5_on.png' : 'images/btn_gnb_5_off.png'}"/></a></li>
+			<li><a href="store-search"><img src="images/btn_gnb_6_off.png" alt="EVENT" th:src="${#strings.startsWith(view,'/store-search') ? 'images/btn_gnb_6_on.png' : 'images/btn_gnb_6_off.png'}"/></a></li>
+		</ul>
+	</nav>
+	<!-- //nav -->
+</header>
+<!-- //header -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+before_script:  
+  - export JAVA_HOME=/home/gitlab-runner/jdk1.7.0_79
+  - export MAVEN_HOME=/home/gitlab-runner/apache-maven-3.3.9
+  - export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH
+
+stages:
+  - package
+
+package_release:
+  script:
+    - mvn clean package -Dmaven.test.skip=true
+    - chmod +x .dist_remote.sh
+    - ./.dist_remote.sh release
+  stage: package
+  only:
+    - master
+
+package_dev:
+  script:
+    - mvn clean package -Dmaven.test.skip=true
+    - chmod +x .dist_remote.sh
+    - ./.dist_remote.sh dev
+  stage: package
+  only:
+    - develop

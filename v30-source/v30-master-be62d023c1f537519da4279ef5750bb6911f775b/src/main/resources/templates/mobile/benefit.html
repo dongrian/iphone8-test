@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout-mobile">
+<head>
+    <script src="common/js/g6reserve.js"></script>
+    <script src="common/js/server.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+	<!-- 유플러스만의 구매혜택
+	<div class="benefit_area">
+		<dl>
+			<dt>
+				<p><img src="images/txt_benefit_1.png" alt="더 커진 즐거움에 유플러스만의 혜택을 더하다"/></p>
+			</dt>
+			<dd><img src="images/img_benefit_banner_1_1.png" alt="혜택01 예약가입 사은품"/></dd>
+			<dd><img src="images/img_benefit_banner_3.png" alt="혜택03 구매부담 덜어주는 R클럽"/></dd>
+			<dd class="btn_benefit_4" onclick="setBenefitToggle('btn_benefit_4');">
+				<span><img src="images/img_benefit_banner_4_1_off.png" alt="혜택04 할부금 부담 덜어주는 제휴카드"/></span>
+				<p style="display:none;"><img src="images/img_benefit_banner_4_2.png" alt="" /></p>
+			</dd>
+			<dd class="btn_benefit_5" onclick="setBenefitToggle('btn_benefit_5');">
+				<span><img src="images/img_benefit_banner_5_1_off.png" alt="혜택05 매월 영화 2번 무료로 즐기는 U+ 멤버십"/></span>
+				<p style="display:none;"><img src="images/img_benefit_banner_5_2.png" alt="" /></p>
+			</dd>
+
+			<dd class="btn_benefit_6">
+				<span onclick="setBenefitToggle('btn_benefit_6');"><img src="images/img_benefit_banner_6_1_off.png" alt="혜택06 오직 U+ 고객만 164GB 저장메모리" usemap="#Map_banner_6"/></span>
+				<p style="display:none;"><img src="images/img_benefit_banner_6_2.png" alt="" /></p>
+				<map name="Map_banner_6">
+					<area shape="rect" coords="491,20,618,55" href="javascript:sendBenefitMorePage(3);" alt="자세히보기"/>
+				</map>
+			</dd>
+			<dd>
+				<img src="images/img_benefit_banner_7.png" alt="혜택07" border="0" usemap="#Map_banner_7"/>
+				<map name="Map_banner_7">
+					<area shape="rect" coords="500,52,642,100" href="javascript:sendBenefitMorePage(0);" alt="자세히보기"/>
+				</map>
+			</dd>
+			<dd>
+				<img src="images/img_benefit_banner_8.png" alt="혜택08" border="0" usemap="#Map_banner_8"/>
+				<map name="Map_banner_8">
+					<area shape="rect" coords="499,35,643,89" href="javascript:sendBenefitMorePage(1);" alt="자세히보기"/>
+					<area shape="rect" coords="498,88,643,139" href="javascript:sendBenefitMorePage(2);" alt="자세히보기"/>
+				</map>
+			</dd>
+		</dl>
+	</div>
+	<script type="text/javascript">
+		function setBenefitToggle(cname){
+			var benefit = $('.' + cname);
+			benefit.find('p').toggle();
+			
+			var srcname;
+			var imgname = benefit.find('span').find('img').attr('src');
+			if (benefit.find('p').css('display') == 'none'){
+				srcname = imgname.replace('_on', '_off');
+			} else{
+				srcname = imgname.replace('_off', '_on');
+			}
+			
+			benefit.find('span').find('img').attr('src', srcname);
+		}
+	</script>
+	//유플러스만의 구매혜택 -->
+	
+	<!-- 2017-09-11 유플러스만의 구매혜택 -->
+	<div class="benefit_area">
+		<dl>
+			<dt>
+				<p class="img_100"><img src="images/txt_benefit_1.png" alt="더 커진 즐거움에 유플러스만의 혜택을 더하다" /></p>
+			</dt>
+			<dd><img src="images/img_benefit_banner_1.png" alt="혜택01 예약가입 사은품" /></dd>
+			<dd><img src="images/img_benefit_banner_2.png" alt="혜택02 초기개통 사은품" /></dd>
+			<dd><img src="images/img_benefit_banner_3.png" alt="혜택03 구매부담 덜어주는 R클럽" /></dd>
+			<dd><img src="images/img_benefit_banner_4.png" alt="혜택04 할부금 부담 덜어주는 제휴카드" /></dd>
+			<dd><img src="images/img_benefit_banner_5.png" alt="혜택05 매월 영화 2번 무료로 즐기는 U+ 멤버십" /></dd>
+			<dd><img src="images/img_benefit_banner_6.png" alt="혜택06 모바일끼리 결합 할인받는 U+ 가족무한사랑" /></dd>
+		</dl>
+	</div>
+	<!-- //2017-09-11 유플러스만의 구매혜택 -->
+	
+	<!-- 2017-09-12 btn : 구매혜택 자세히보기 -->
+	<div class="m_btn_benefit_view">
+		<a href="http://www.uplus.co.kr/evt/evnt/evin/RetrieveUbEvIngElDetail.hpi?evntsrlno=256810" target="_blank" onclick="FacebookPixelCode(4);"><img src="images/m_btn_benefit_view.png" alt="배너광고" /></a>
+	</div>
+
+	<!-- 2017-09-12 추가 -->
+	<div class="img_banner">
+		<a href="javascript:sendVReventPage();"><img src="images/img_banner.png" alt="" /></a>
+	</div>
+	<!-- //2017-09-12 추가 -->
+		
+		
+</th:block>
+
+</body>
+</html>

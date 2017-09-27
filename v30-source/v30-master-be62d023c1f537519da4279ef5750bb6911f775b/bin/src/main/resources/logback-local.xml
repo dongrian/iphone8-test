@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %c:%M:%L -%X{currentUser}%X{requestParams} %m%n</Pattern>
+        </encoder>
+    </appender> -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%.-1level|%-40.40logger|%5L|%d{HH:mm:ss}|%msg%n%ex{full, EX_DISPLAY_EVAL}</pattern>
+		</encoder>
+	</appender>
+	
+   	<!-- <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="org.hibernate.type" level="TRACE" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger> -->
+	
+    <!-- <logger name="org.springframework.web" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger> -->
+    
+    <logger name="com.gaeasoft.preorder" level="INFO" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

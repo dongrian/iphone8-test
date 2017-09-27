@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+</head>
+<body>
+
+<th:block layout:fragment="content">        
+    <div class="contBlock contents question">
+    
+        <div class="colorBlock"></div>
+    
+        <div class="contElements">
+            <div class="title"><img src="images/question_title.png"/></div>
+
+
+			<!-- 2017-09-11 faq area -->
+			<div class="faq_area">
+		
+				<!-- 공통 질문 -->
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_pink">공통</strong> 매장 방문과 온라인 직영몰 신청을 중복으로 할 수 있나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 네, 가능합니다. 유플러스의 모든 사전예약 방법에 대해서 중복 신청을 하실 수 있고, 각각 다른 예약번호가 부여됩니다.
+									<br />
+									- 단, 전체 채널을 합쳐서 1인 당 최대 3개까지 신청하실 수 있습니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_pink">공통</strong> 1인 당 몇 개씩 예약할 수 있나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 사전예약은 1인 당 최대 3대까지 신청하실 수 있습니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_pink">공통</strong> 색상을 중복으로 신청할 수 있나요? </span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 네, 가능합니다. 1인 당 최대 3대까지 신청하실 수 있습니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_pink">공통</strong> 예약번호를 잊어버렸어요. 다시 확인할 수 있나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 사전예약홈페이지( http://v30.uplus.co.kr ) &gt; 내 예약 확인 메뉴에서 확인하실 수 있습니다. <br />
+									- 카카오톡 플러스친구 'LG유플러스' 추가 후 내 예약 확인에서 확인하실 수 있습니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_pink">공통</strong> 사전예약 후 색상과 매장을 변경할 수 있나요? </span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 아니요. 예약번호가 발급되면 수정하실 수 없습니다. <br />
+									- 단, 1인 당 3대까지 신청하실 수 있으니 다시 사전예약을 신청하여 새로운 예약번호를 받으시길 바랍니다. <br />
+									- 이미 3대를 신청하셨다면, 기존 예약 신청내역을 삭제하신 후 재신청할 수 있으니 참고하세요.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				
+
+		<dl class="faq_list">
+			<dt>
+				<span><strong class="color_pink">공통</strong> 사전예약 후 이름과 휴대폰 번호를 변경할 수 있나요?</span>
+			</dt>
+			<dd>
+				<ul class="depth_2">
+					<li>
+						<span>
+							- 사전예약 중에 수정할 수 없지만 개통을 진행할 때 실제 개통을 원하시는 휴대폰 번호로 변경하실 수 있습니다. <br />
+							- 단, 타인의 사전예약 번호 도용을 방지하기 위해 이름은 변경하실 수 없으니 주의하세요.
+						</span>
+					</li>
+				</ul>
+			</dd>
+		</dl>
+		
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_pink">공통</strong> 3개의 사전예약을 모두 완료했습니다. 추가 신청할 수 있나요? </span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 아니요, 불가능합니다. 색상 변경을 원하신다면 기존 신청내역을 삭제한 후 다시 신청하시길 바랍니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<!--// 공통 질문 -->
+		
+				<!-- 매장 질문 -->
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_blue">매장</strong> 매장선택 목록에 방문하려는 매장이 없습니다. 어떻게 해야 하나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 매장선택 화면에서 '나중에 선택하기' 를 선택한 후 예약을 완료하여 예약번호를 발급 받으세요. <br />
+									- 이후 원하시는 매장에 방문하여 부여 받은 예약번호를 보여주면 '휴대폰 번호 문자 본인 인증' 을 통해 바로 개통하실 수 있습니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_blue">매장</strong> 선택한 매장이 아닌 다른 매장으로 변경하여 개통하려면 어떻게 해야 하나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 원하시는 매장에 방문하여 부여 받은 예약번호를 보여주면 휴대폰 번호 문자 본인 인증을 통해 바로 개통하실 수 있습니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<!-- //매장 질문 -->
+		
+				<!-- 온라인 질문 -->
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_gray">온라인</strong> 사전예약 후 온라인 신청서 작성은 어떻게 해야 하나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 예약 당일에 신청서를 작성하셔야 우선 개통이 진행됩니다. <br />
+									- 당일 신청서를 작성하지 않으면 배송 및 개통 등 모든 면에서 순위가 뒤로 밀릴 수 있으니, 주의해 주세요.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+		
+				<dl class="faq_list">
+					<dt>
+						<span><strong class="color_gray">온라인</strong> 온라인 신청서 작성 후 해피콜 연락은 언제 오나요?</span>
+					</dt>
+					<dd>
+						<ul class="depth_2">
+							<li>
+								<span>
+									- 신청서 접수 후 순차적으로 신청 당일~이틀 후 사이에 U+  Shop 고객센터 1644-7009 에서 연락드릴 예정입니다.
+								</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<!-- //온라인 질문 -->
+		
+			</div>
+			<!-- //2017-02-24 faq area -->
+			<script>
+			
+				$(document).ready(function(){
+	
+					$('.faq_list').each(function(idx, item){
+						$(item).find('dt').bind('click', function(){
+							openQnaList(idx);
+						});
+						
+						$(item).find('dd ul li span').each(function(cdx, child){
+							$(child).bind('click', function(){
+								openQnaText(idx, cdx);
+							});
+						});
+					});
+					openQnaList(0)
+				});
+			
+				function openQnaList(odx){
+					$('.faq_list').each(function(idx, item){
+						if (odx == idx) {
+							$(item).find('dd').css('display', 'block');
+							//$(item).find('dt').css('background', "#f4f4f4 url('images/bg_faq_on.jpg') no-repeat left center"); //2017-08-24
+						}else {
+							$(item).find('dd').css('display', 'none');
+							//$(item).find('dt').css('background', "#f4f4f4 url('images/bg_faq_off.jpg') no-repeat left center"); //2017-08-24
+							openQnaText(idx, -1);
+						}
+					});
+				}
+				
+				function openQnaText(idx, cdx){
+					$('.faq_list').eq(idx).find('dd ul li div').each(function(tdx, txt){
+						if (cdx == tdx) {
+							var display = $(txt).css('display');
+							if (display == "none") $(txt).css('display', 'block');
+							else $(txt).css('display', 'none');
+						}else $(txt).css('display', 'none');
+					});
+				}
+				
+			</script>
+	
+
+
+
+
+            
+            <!-- 2017-02-24 -->
+				<div class="questionBlock" style="display:none;">
+					<div class="questionElement">
+						<div class="questionTab">
+							<img src="images/question_tab1.jpg"/>
+							<img class="tabArrow" src="images/question_tab_arrow_on.jpg"/>
+						</div>
+						<div class="questionContent">
+							<div class="questionBullet"><img src="images/question_bullet.gif"/></div>
+							<div class="questionAnswer">
+								<div class="answerList">
+									<div class="answerTitle">- 매장과 온라인직영몰과 중복 신청이 가능한가요?</div>
+									<div class="answerTxt">
+										네. 가능합니다. 유플러스의 모든 사전예약 방법에 대해서 중복으로 신청이 가능하며,<br/>
+										각각 다른 예약가입 번호가 부여됩니다.<br/>
+										단, 예약가입 전체 채널을 합쳐서 인당 최대 3개까지 가능합니다.<br/>
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 1인당 몇 개씩 예약이 가능한가요?</div>
+									<div class="answerTxt">
+										1인당 최대 3개까지 사전예약이 가능합니다.
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 색상 결정을 못했어요. 중복 신청이 가능한가요?</div>
+									<div class="answerTxt">
+										네. 가능합니다. (인당 최대 3개까지 사전예약이 가능합니다.)
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 예약번호를 잊어버렸습니다. 어떻게 확인해야 하나요?</div>
+									<div class="answerTxt">
+										 예약가입사이트(g6.uplus.co.kr) > 예약가입 확인 메뉴에서 확인 가능합니다.<br/>
+										또는 카카오톡 플러스친구 'LG유플러스' 등록 후 '나의 예약가입 조회'에서 확인이 가능합니다.
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 예약가입 후 색상, 매장을 변경하고 싶습니다. 수정이 가능한가요?</div>
+									<div class="answerTxt">
+										아니요. 예약번호가 발급되고 나면 수정이 불가능합니다.<br/>
+										인당 3개까지 신청이 가능하오니, 수정 원하시는 내용으로 다시 사전 예약을 신청하여<br/>
+										새로운 예약번호를 받으시길 바랍니다.<br/>
+										기존 신청내역의 삭제 또한 가능합니다.
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 예약가입 후 이름, 휴대폰번호 정보 변경이 가능한가요?</div>
+									<div class="answerTxt">										
+										예약가입 중 수정은 불가하나, 이후 개통 진행 시에는 '휴대폰번호'는 실제 개통을 원하시는 번호로 변경 가능합니다.<br/>
+										단, 타인의 예약가입 번호 도용을 방지하기 위해 '이름'은 변경이 불가하오니, 예약가입 신청 시 실제 개통하시려는 분의 이름으로 진행 부탁드립니다.<br/>
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 예약가입을 3개 모두 하였습니다. 추가 신청이 가능한가요?</div>
+									<div class="answerTxt">
+										아니요. 불가능합니다.<br/>
+										색상 변경을 원하시는 경우 기존 예약가입 건을 삭제 후 재신청 부탁드립니다.
+									</div>
+								</div>	
+								<div class="answerList">
+									<div class="answerTitle">- 신청내역을 삭제하고 싶습니다. 삭제가 가능한가요?</div>
+									<div class="answerTxt">
+										네. 가능합니다.<br/>
+										예약가입사이트(g6.uplus.co.kr) > 예약가입 확인 메뉴에서 신청내역을 삭제하실 수 있습니다.
+									</div>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<div class="questionElement">
+						<div class="questionTab">
+							<img src="images/question_tab2.jpg"/>
+							<img class="tabArrow" src="images/question_tab_arrow_off.jpg"/>
+						</div>
+						<div class="questionContent">
+							<div class="questionBullet"><img src="images/question_bullet.gif"/></div>
+							<div class="questionAnswer">
+								<div class="answerList">
+									<div class="answerTitle">- 방문하려는 매장이 매장선택 목록에 없습니다. 어떻게 해야하나요?</div>
+									<div class="answerTxt">
+										매장선택 화면에서 '나중에 선택하기' 를 선택한 후 예약을 완료해주신 후,<br/>
+										해당 예약가입번호를 가지고 개통을 원하시는 매장에 방문하여<br/>
+										본인인증(휴대폰 번호 SMS 인증)하시면 해당 매장에서 개통이 가능합니다.
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 선택한 매장이 아닌 다른 매장으로 변경하여 개통하려면 어떻게 해야하나요?</div>
+									<div class="answerTxt">
+										예약가입번호를 가지고 개통을 원하시는 매장에 방문하여<br/>
+										본인인증(휴대폰 번호 SMS 인증)하시면 해당 매장에서 개통이 가능합니다.
+									</div>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<div class="questionElement">
+						<div class="questionTab">
+							<img src="images/question_tab3.jpg"/>
+							<img class="tabArrow" src="images/question_tab_arrow_off.jpg"/>
+						</div>
+						<div class="questionContent">
+							<div class="questionBullet"><img src="images/question_bullet.gif"/></div>
+							<div class="questionAnswer">
+								<div class="answerList">
+									<div class="answerTitle">- 예약가입 후 온라인 신청서 작성은 어떻게 해야 하나요?</div>
+									<div class="answerTxt">
+										온라인 예약 당일에 신청서를 작성하셔야 우선적으로 개통 진행됩니다.<br/>
+										온라인 신청서는 3월 20일까지 가능하지만 당일 미작성 시 배송/개통 등 모든 부분에서<br/>
+										후 순위로 변경됩니다.
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 온라인 신청서 작성 후 해피콜은 언제 오나요?</div>
+									<div class="answerTxt">
+										신청서 접수 후 순차적으로 익일~익익일 사이에 U+Shop 고객센터(1644-7009)에서<br/>
+										연락드리도록 하겠습니다.
+									</div>
+								</div>		
+								<div class="answerList">
+									<div class="answerTitle">- 해피콜을 못받았어요</div>
+									<div class="answerTxt">
+										 U+Shop에서는 고객님께 최대 3회 연락드릴 예정이며<br/>
+										 부재 시 별도 SMS를 보내드릴 예정입니다.<br/>
+										 연결이 안되실 경우 배송/개통 등 모든 부분에서 후순위로 변경됩니다.
+									</div>
+								</div>									
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //2017-02-24 -->
+	    
+	    </div>
+    </div>
+</th:block>
+
+</body>
+</html>

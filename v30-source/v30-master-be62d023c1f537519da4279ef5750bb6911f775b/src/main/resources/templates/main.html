@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+    <title>LG유플러스 V30 사전 예약</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">  
+	<script>
+		FacebookPixelCode(0);
+	</script>
+      
+	<!-- 2017-02-24 -->
+		<div class="contBlock contents main">
+	
+			<div class="contElements">				
+			</div>
+			
+			<!--
+			<div class="topVisualBlock" >
+				<img src="images/main_visual.jpg"/>
+				 
+				<img src="images/main_visual_2.jpg"/>
+				<img src="images/main_visual_3.jpg"/>
+				<img src="images/main_visual_4.jpg"/>
+				<img src="images/main_visual_5.jpg"/>
+				<img src="images/main_visual_6.jpg"/>
+				
+			</div>
+			-->
+			
+			<div class="pc_bg_main_top">
+				<span>V30 혜택 영역</span>
+			</div>
+			<div class="pc_bg_main_bottom">
+				<span>V30 혜택 영역</span>
+			</div>
+			
+			
+			<div class="goReserveBtn">
+				<a href="javascript:alert('사전예약이 종료되었습니다.');" onclick="FacebookPixelCode(1);sendAceCount('V30main_booking')">
+					<img src="images/main_reserve_btn.png"/>
+				</a>
+			</div>
+		
+		</div>
+	<!-- 2017-02-24 -->
+
+	<!-- 플로팅 배너 -->
+	<div class="img_banner">
+		<a href="javascript:sendAceCount('V30booking_footerbanner');sendVReventPage();"><img src="images/pc_img_banner.png" alt="이벤트 바로가기" /></a>
+	</div>
+							
+</th:block>
+
+
+			
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/layouts/layout">
+<head>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <div class="contBlock contents benefit">   
+    	<div class="colorBlock"></div> 
+    	<div class="benefitBI"><img src="images/benefit_BI.png"/></div>
+    	<!-- 
+    	<div class="colorBlock gray"></div> 
+    	<div class="colorBlock gray"></div> 
+    	<div class="colorBlock gray"></div>
+    	-->
+	    <div class="contElements">
+				<div class="benefitCont"><img src="images/benefit_title.png"/></div>
+				<!-- 2017-09-12
+				<div class="benefitCont"><img src="images/benefit_img_1.jpg"/></div>
+				
+				<div class="benefitCont"><img src="images/benefit_img_2.jpg"/></div>
+				
+				<div class="benefitCont"><img src="images/benefit_img_3.jpg"/></div>
+				
+				<div class="benefitCont"><img src="images/benefit_img_4.jpg"/></div>
+				
+				<div class="benefitCont"><img src="images/benefit_img_5.jpg"/></div>
+				 -->
+	    </div>
+		<script>
+			/*
+			function cardContToggle(cname){
+				var srcname;
+				var benefit = $('.' + cname);
+				var display = benefit.find('.benefitReply').css('display');
+				var imgname = benefit.find('.benefitArrow').attr('src');
+				
+				var benefitheight = $('.contBlock.contents.benefit').height();
+				
+				if (display == "inline") {
+					benefit.find('.benefitReply').css('display', 'none');
+					srcname = imgname.replace('_on', '_off');
+					
+					benefitheight -= benefit.find('.benefitReply').height();
+				}else{
+					benefit.find('.benefitReply').css('display', 'inline');
+					srcname = imgname.replace('_off', '_on');
+					
+					benefitheight += benefit.find('.benefitReply').height();
+				}
+				benefit.find('.benefitArrow').attr('src', srcname);
+				
+				$('.contBlock.contents.benefit').height(benefitheight);
+			}
+			*/
+		</script>
+		<style>
+
+		</style>
+		<div class="pc_benefit_list" style="">
+			<dl>
+				<dt>
+					<p><img src="images/benefit_img_0.jpg"/></p>
+				</dt>
+				<dd class="bg_1">
+					<p><img src="images/benefit_img_1.jpg" usemap="#Map_img_1" /></p>
+					<map name="Map_img_1">
+					  <area shape="rect" coords="369,833,608,893" href="http://www.uplus.co.kr/evt/evnt/evin/RetrieveUbEvIngElDetail.hpi?evntsrlno=256810 " target="_blank" onclick="FacebookPixelCode(4);"/>
+					</map>					
+				</dd>
+				<dd class="bg_2">
+					<p><img src="images/benefit_img_2.jpg"/></p>
+				</dd>
+				<dd class="bg_3">
+					<p><img src="images/benefit_img_3.jpg"/></p>
+				</dd>
+				<dd class="bg_4">
+					<p><img src="images/benefit_img_4.jpg"/></p>
+				</dd>
+				<dd class="bg_5">
+					<p><img src="images/benefit_img_5.jpg"/></p>
+				</dd>
+				<dd class="bg_6">
+					<p><img src="images/benefit_img_6.jpg"/></p>
+				</dd>
+			</dl>
+			
+		</div>
+    </div>
+    
+	<!-- 플로팅 배너 -->
+	<div class="img_banner">
+		<a href="javascript:sendVReventPage();"><img src="images/pc_img_banner.png" alt="이벤트 바로가기" /></a>
+	</div>
+	    
+</th:block>
+
+</body>
+</html>
